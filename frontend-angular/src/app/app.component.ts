@@ -3,6 +3,7 @@ import { FileUploadComponent } from './components/file-upload/file-upload.compon
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   imports: [FileUploadComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'

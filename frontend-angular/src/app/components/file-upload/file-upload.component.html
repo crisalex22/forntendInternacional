@@ -1,1 +1,6 @@
-<p>file-upload works!</p>
+<div class="upload-container">
+  <input type="file" (change)="onFileSelected($event)">
+  <button (click)="uploadFile()" [disabled]="!selectedFile || !validFormat">Subir Archivo</button>
+  <p *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</p>
+  <p *ngIf="uploadSuccess" style="color: green;">Archivo subido exitosamente.</p>
+</div>

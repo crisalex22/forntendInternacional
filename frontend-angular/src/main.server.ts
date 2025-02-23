@@ -1,7 +1,13 @@
 import { bootstrapApplication } from '@angular/platform-browser';
+import { provideServerRendering } from '@angular/platform-server';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 import { AppComponent } from './app/app.component';
-import { config } from './app/app.config.server';
 
-const bootstrap = () => bootstrapApplication(AppComponent, config);
-
-export default bootstrap;
+export default function bootstrap() {
+  return bootstrapApplication(AppComponent, {
+    providers: [
+      provideServerRendering(),
+      provideHttpClient(withFetch())
+    ]
+  }).catch(err => console.error(err));
+}
