@@ -1,0 +1,47 @@
+{
+	"info": {
+		"_postman_id": "ade0421f-bd76-43b7-8888-1678e0b771dc",
+		"name": "Internacional",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12453598"
+	},
+	"item": [
+		{
+			"name": "AccountCreate",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"nombre\": \"Juan\",\r\n        \"apellido\": \"Pérez\",\r\n        \"identificacion\": \"12345678\",\r\n        \"edad\": 30,\r\n        \"fechaRegistro\": \"2024-02-01\",\r\n        \"correo\": \"juan@example.com\"\r\n    },\r\n    {\r\n        \"nombre\": \"María\",\r\n        \"apellido\": \"Gómez\",\r\n        \"identificacion\": \"87654321\",\r\n        \"edad\": 25,\r\n        \"fechaRegistro\": \"2024-02-15\",\r\n        \"correo\": \"maria@example.com\"\r\n    }\r\n]\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8088/accounts/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8088",
+					"path": [
+						"accounts",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAccounts",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}

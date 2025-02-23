@@ -1,0 +1,2 @@
+Juan,Pérez,123456787,30,2025-01-25,juan@example.com
+María,Gómez,876543271,25,2025-01-02,maria@example.com
