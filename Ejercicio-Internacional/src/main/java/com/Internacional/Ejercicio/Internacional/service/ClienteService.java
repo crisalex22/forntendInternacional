@@ -3,9 +3,6 @@ package com.Internacional.Ejercicio.Internacional.service;
 import com.Internacional.Ejercicio.Internacional.data.model.Cliente;
 import com.Internacional.Ejercicio.Internacional.data.ClienteRepository;
 
-import org.hibernate.engine.jdbc.env.internal.LobCreationLogging_.logger;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,6 +39,7 @@ public class ClienteService {
             response.put("correo", cliente.getCorreo());
 
             try {
+                validarIdentificacionUnica(cliente.getIdentificacion());
                 validarFechaRegistro(cliente.getFechaRegistro());
                 validarCorreo(cliente.getCorreo());
                 cliente.setCuenta(generarCuenta());
@@ -104,5 +102,15 @@ public class ClienteService {
         if (!pattern.matcher(correo).matches()) {
             throw new IllegalArgumentException("El correo no tiene un formato válido.");
         }
-    }    
+    } 
+
+    private void validarIdentificacionUnica(String identificacion) {
+        if (identificacion == null || identificacion.trim().isEmpty()) {
+            throw new IllegalArgumentException("La identificación no puede estar vacía.");
+        }
+    
+        if (clienteRepository.findByIdentificacion(identificacion).isPresent()) {
+            throw new IllegalArgumentException("La identificación ya está registrada en la base de datos.");
+        }
+    }
 }
