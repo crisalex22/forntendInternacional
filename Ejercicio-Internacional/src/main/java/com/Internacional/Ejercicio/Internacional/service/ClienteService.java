@@ -43,6 +43,7 @@ public class ClienteService {
 
             try {
                 validarFechaRegistro(cliente.getFechaRegistro());
+                validarCorreo(cliente.getCorreo());
                 cliente.setCuenta(generarCuenta());
                 clienteRepository.save(cliente);
                 response.put("cuenta", cliente.getCuenta());
@@ -90,4 +91,18 @@ public class ClienteService {
         int cuenta = 100000000 + random.nextInt(900000000); // Número de 9 dígitos
         return String.valueOf(cuenta);
     }
+
+    private void validarCorreo(String correo) {
+        if (correo == null || correo.trim().isEmpty()) {
+            throw new IllegalArgumentException("El correo no puede estar vacío.");
+        }
+    
+        // Expresión regular para validar formato de correo
+        String correoRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+        Pattern pattern = Pattern.compile(correoRegex);
+    
+        if (!pattern.matcher(correo).matches()) {
+            throw new IllegalArgumentException("El correo no tiene un formato válido.");
+        }
+    }    
 }
