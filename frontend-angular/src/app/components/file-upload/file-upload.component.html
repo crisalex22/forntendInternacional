@@ -1,6 +1,38 @@
 <div class="upload-container">
   <input type="file" (change)="onFileSelected($event)">
   <button (click)="uploadFile()" [disabled]="!selectedFile || !validFormat">Subir Archivo</button>
-  <p *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</p>
-  <p *ngIf="uploadSuccess" style="color: green;">Archivo subido exitosamente.</p>
+  <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+  <p *ngIf="uploadSuccess" class="success">Archivo subido exitosamente.</p>
+</div>
+<div class="result-container">
+  <h2>Resultados</h2>
+  <p *ngIf="responses.length === 0">No hay resultados para mostrar.</p>
+  <table *ngIf="responses.length > 0" class="result-table">
+    <thead>
+      <tr>
+        <th>Identificación</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Edad</th>
+        <th>Fecha Registro</th>
+        <th>Correo</th>
+        <th>Cuenta</th>
+        <th>Status</th>
+        <th>Mensaje</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let response of responses" [class.ok]="response.status === 'OK'" [class.error]="response.status === 'ERROR'">
+        <td>{{ response.identificacion }}</td>
+        <td>{{ response.nombre }}</td>
+        <td>{{ response.apellido }}</td>
+        <td>{{ response.edad }}</td>
+        <td>{{ response.fechaRegistro }}</td>
+        <td>{{ response.correo }}</td>
+        <td>{{ response.cuenta }}</td>
+        <td>{{ response.status }}</td>
+        <td>{{ response.error }}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>

@@ -6,13 +6,11 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class FileUploadService {
-  private apiUrl = 'http://localhost:8080/upload'; // URL del backend
+  private apiUrl = 'http://localhost:8088/accounts/create'; // URL del backend
 
   constructor(private http: HttpClient) {}
 
-  uploadFile(file: File): Observable<any> {
-    const formData = new FormData();
-    formData.append('file', file);
-    return this.http.post(this.apiUrl, formData);
+  uploadClients(clientes: any[]): Observable<any> {
+    return this.http.post(this.apiUrl, clientes);
   }
 }
